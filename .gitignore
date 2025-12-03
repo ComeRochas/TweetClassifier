@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb_checkpoints/
+.env
+venv/
+.env/
+*.pth
+# Data
+train.jsonl
+kaggle_test.jsonl
+*.csv
+*.jsonl
+# Models and scaler
+best_multimodal_model.pt
+scaler.pkl
+# Plots
+plots/
+# MacOS
+.DS_Store
