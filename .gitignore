@@ -19,3 +19,4 @@ scaler.pkl
 plots/
 # MacOS
 .DS_Store
+twitter-xlm-roberta-base/

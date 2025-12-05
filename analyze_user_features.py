@@ -9,6 +9,244 @@ import math
 # Create directory for plots if it doesn't exist
 if not os.path.exists('plots'):
     os.makedirs('plots')
+    
+    
+features = [
+    "extended_tweet",
+    "extended_tweet.entities",
+    "extended_tweet.entities.urls",
+    "extended_tweet.entities.hashtags",
+    "extended_tweet.entities.hashtags[].indices",
+    "extended_tweet.entities.hashtags[].text",
+    "extended_tweet.entities.user_mentions",
+    "extended_tweet.entities.symbols",
+    "extended_tweet.full_text",
+    "extended_tweet.display_text_range",
+    "quoted_status",
+    "quoted_status.extended_tweet",
+    "quoted_status.extended_tweet.extended_entities",
+    "quoted_status.extended_tweet.extended_entities.media",
+    "quoted_status.extended_tweet.extended_entities.media[].display_url",
+    "quoted_status.extended_tweet.extended_entities.media[].indices",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.small",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.small.w",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.small.h",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.small.resize",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.large",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.large.w",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.large.h",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.large.resize",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.thumb",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.thumb.w",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.thumb.h",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.thumb.resize",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.medium",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.medium.w",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.medium.h",
+    "quoted_status.extended_tweet.extended_entities.media[].sizes.medium.resize",
+    "quoted_status.extended_tweet.extended_entities.media[].id_str",
+    "quoted_status.extended_tweet.extended_entities.media[].expanded_url",
+    "quoted_status.extended_tweet.extended_entities.media[].media_url_https",
+    "quoted_status.extended_tweet.extended_entities.media[].id",
+    "quoted_status.extended_tweet.extended_entities.media[].type",
+    "quoted_status.extended_tweet.extended_entities.media[].media_url",
+    "quoted_status.extended_tweet.extended_entities.media[].url",
+    "quoted_status.extended_tweet.entities",
+    "quoted_status.extended_tweet.entities.urls",
+    "quoted_status.extended_tweet.entities.urls[].display_url",
+    "quoted_status.extended_tweet.entities.urls[].indices",
+    "quoted_status.extended_tweet.entities.urls[].expanded_url",
+    "quoted_status.extended_tweet.entities.urls[].url",
+    "quoted_status.extended_tweet.entities.hashtags",
+    "quoted_status.extended_tweet.entities.hashtags[].indices",
+    "quoted_status.extended_tweet.entities.hashtags[].text",
+    "quoted_status.extended_tweet.entities.media",
+    "quoted_status.extended_tweet.entities.media[].display_url",
+    "quoted_status.extended_tweet.entities.media[].indices",
+    "quoted_status.extended_tweet.entities.media[].sizes",
+    "quoted_status.extended_tweet.entities.media[].sizes.small",
+    "quoted_status.extended_tweet.entities.media[].sizes.small.w",
+    "quoted_status.extended_tweet.entities.media[].sizes.small.h",
+    "quoted_status.extended_tweet.entities.media[].sizes.small.resize",
+    "quoted_status.extended_tweet.entities.media[].sizes.large",
+    "quoted_status.extended_tweet.entities.media[].sizes.large.w",
+    "quoted_status.extended_tweet.entities.media[].sizes.large.h",
+    "quoted_status.extended_tweet.entities.media[].sizes.large.resize",
+    "quoted_status.extended_tweet.entities.media[].sizes.thumb",
+    "quoted_status.extended_tweet.entities.media[].sizes.thumb.w",
+    "quoted_status.extended_tweet.entities.media[].sizes.thumb.h",
+    "quoted_status.extended_tweet.entities.media[].sizes.thumb.resize",
+    "quoted_status.extended_tweet.entities.media[].sizes.medium",
+    "quoted_status.extended_tweet.entities.media[].sizes.medium.w",
+    "quoted_status.extended_tweet.entities.media[].sizes.medium.h",
+    "quoted_status.extended_tweet.entities.media[].sizes.medium.resize",
+    "quoted_status.extended_tweet.entities.media[].id_str",
+    "quoted_status.extended_tweet.entities.media[].expanded_url",
+    "quoted_status.extended_tweet.entities.media[].media_url_https",
+    "quoted_status.extended_tweet.entities.media[].id",
+    "quoted_status.extended_tweet.entities.media[].type",
+    "quoted_status.extended_tweet.entities.media[].media_url",
+    "quoted_status.extended_tweet.entities.media[].url",
+    "quoted_status.extended_tweet.entities.user_mentions",
+    "quoted_status.extended_tweet.entities.user_mentions[].indices",
+    "quoted_status.extended_tweet.entities.user_mentions[].screen_name",
+    "quoted_status.extended_tweet.entities.user_mentions[].id_str",
+    "quoted_status.extended_tweet.entities.user_mentions[].name",
+    "quoted_status.extended_tweet.entities.user_mentions[].id",
+    "quoted_status.extended_tweet.entities.symbols",
+    "quoted_status.extended_tweet.full_text",
+    "quoted_status.extended_tweet.display_text_range",
+    "quoted_status.in_reply_to_status_id_str",
+    "quoted_status.in_reply_to_status_id",
+    "quoted_status.created_at",
+    "quoted_status.in_reply_to_user_id_str",
+    "quoted_status.source",
+    "quoted_status.retweet_count",
+    "quoted_status.retweeted",
+    "quoted_status.geo",
+    "quoted_status.filter_level",
+    "quoted_status.in_reply_to_screen_name",
+    "quoted_status.is_quote_status",
+    "quoted_status.id_str",
+    "quoted_status.in_reply_to_user_id",
+    "quoted_status.favorite_count",
+    "quoted_status.id",
+    "quoted_status.text",
+    "quoted_status.place",
+    "quoted_status.lang",
+    "quoted_status.quote_count",
+    "quoted_status.favorited",
+    "quoted_status.possibly_sensitive",
+    "quoted_status.coordinates",
+    "quoted_status.truncated",
+    "quoted_status.reply_count",
+    "quoted_status.entities",
+    "quoted_status.entities.urls",
+    "quoted_status.entities.urls[].display_url",
+    "quoted_status.entities.urls[].indices",
+    "quoted_status.entities.urls[].expanded_url",
+    "quoted_status.entities.urls[].url",
+    "quoted_status.entities.hashtags",
+    "quoted_status.entities.user_mentions",
+    "quoted_status.entities.symbols",
+    "quoted_status.display_text_range",
+    "quoted_status.contributors",
+    "quoted_status.user",
+    "quoted_status.user.utc_offset",
+    "quoted_status.user.friends_count",
+    "quoted_status.user.profile_image_url_https",
+    "quoted_status.user.listed_count",
+    "quoted_status.user.profile_background_image_url",
+    "quoted_status.user.default_profile_image",
+    "quoted_status.user.favourites_count",
+    "quoted_status.user.description",
+    "quoted_status.user.created_at",
+    "quoted_status.user.is_translator",
+    "quoted_status.user.profile_background_image_url_https",
+    "quoted_status.user.protected",
+    "quoted_status.user.screen_name",
+    "quoted_status.user.id_str",
+    "quoted_status.user.profile_link_color",
+    "quoted_status.user.translator_type",
+    "quoted_status.user.id",
+    "quoted_status.user.geo_enabled",
+    "quoted_status.user.profile_background_color",
+    "quoted_status.user.lang",
+    "quoted_status.user.profile_sidebar_border_color",
+    "quoted_status.user.profile_text_color",
+    "quoted_status.user.verified",
+    "quoted_status.user.profile_image_url",
+    "quoted_status.user.time_zone",
+    "quoted_status.user.url",
+    "quoted_status.user.contributors_enabled",
+    "quoted_status.user.profile_background_tile",
+    "quoted_status.user.profile_banner_url",
+    "quoted_status.user.statuses_count",
+    "quoted_status.user.follow_request_sent",
+    "quoted_status.user.followers_count",
+    "quoted_status.user.profile_use_background_image",
+    "quoted_status.user.default_profile",
+    "quoted_status.user.following",
+    "quoted_status.user.name",
+    "quoted_status.user.location",
+    "quoted_status.user.profile_sidebar_fill_color",
+    "quoted_status.user.notifications",
+    "in_reply_to_status_id_str",
+    "in_reply_to_status_id",
+    "created_at",
+    "in_reply_to_user_id_str",
+    "source",
+    "quoted_status_id",
+    "retweet_count",
+    "retweeted",
+    "geo",
+    "filter_level",
+    "in_reply_to_screen_name",
+    "is_quote_status",
+    "id_str",
+    "in_reply_to_user_id",
+    "favorite_count",
+    "text",
+    "place",
+    "quoted_status_permalink",
+    "quoted_status_permalink.expanded",
+    "quoted_status_permalink.display",
+    "quoted_status_permalink.url",
+    "lang",
+    "quote_count",
+    "favorited",
+    "coordinates",
+    "truncated",
+    "timestamp_ms",
+    "reply_count",
+    "entities",
+    "entities.urls",
+    "entities.urls[].display_url",
+    "entities.urls[].indices",
+    "entities.urls[].expanded_url",
+    "entities.urls[].url",
+    "entities.hashtags",
+    "entities.user_mentions",
+    "entities.symbols",
+    "quoted_status_id_str",
+    "contributors",
+    "user",
+    "user.utc_offset",
+    "user.profile_image_url_https",
+    "user.listed_count",
+    "user.profile_background_image_url",
+    "user.default_profile_image",
+    "user.favourites_count",
+    "user.description",
+    "user.created_at",
+    "user.is_translator",
+    "user.profile_background_image_url_https",
+    "user.protected",
+    "user.profile_link_color",
+    "user.translator_type",
+    "user.geo_enabled",
+    "user.profile_background_color",
+    "user.lang",
+    "user.profile_sidebar_border_color",
+    "user.profile_text_color",
+    "user.profile_image_url",
+    "user.time_zone",
+    "user.url",
+    "user.contributors_enabled",
+    "user.profile_background_tile",
+    "user.profile_banner_url",
+    "user.statuses_count",
+    "user.follow_request_sent",
+    "user.profile_use_background_image",
+    "user.default_profile",
+    "user.following",
+    "user.location",
+    "user.profile_sidebar_fill_color",
+    "user.notifications",
+    "challenge_id",
+    "label",
+]
 
 def analyze_user_features():
     print("Loading data...")
@@ -20,11 +258,11 @@ def analyze_user_features():
     # Normalize to flat dataframe
     df = pd.json_normalize(data)
     
-    # Filter columns that start with 'user.'
-    user_cols = [col for col in df.columns if col.startswith('user.')]
+    # Filter columns based on the provided features list
+    target_cols = [col for col in features if col in df.columns]
     label_col = 'label'
     
-    print(f"Found {len(user_cols)} user features.")
+    print(f"Found {len(target_cols)} features in dataframe from the provided list.")
     
     # Set plot style
     sns.set_theme(style="whitegrid")
@@ -32,12 +270,16 @@ def analyze_user_features():
     # First pass: Identify valid features (bool or numeric)
     valid_features = []
     
-    for col in user_cols:
-        feature_name = col.replace('user.', '')
+    for col in target_cols:
+        feature_name = col
         
         # Check if feature has only a single value
-        if df[col].nunique() <= 1:
-            print(f"Skipping feature {feature_name}: Only one unique value")
+        try:
+            if df[col].nunique() <= 1:
+                print(f"Skipping feature {feature_name}: Only one unique value")
+                continue
+        except TypeError:
+            print(f"Skipping feature {feature_name}: Unhashable type (likely list or dict)")
             continue
 
         # Determine type
@@ -140,8 +382,8 @@ def analyze_user_features():
         fig.delaxes(axes[j])
 
     plt.tight_layout()
-    plt.savefig("plots/all_user_features.png")
-    print("\nAll plots saved to plots/all_user_features.png")
+    plt.savefig("plots/all_features.png")
+    print("\nAll plots saved to plots/all_features.png")
     plt.close()
 
 if __name__ == "__main__":
